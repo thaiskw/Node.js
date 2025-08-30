@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-//home
-router.get("/", async (req, res)=> {
+// Página integrantes
+router.get("/", async (req, res) => {
     res.render("base", {
-        title: "Home",
-        view: "index",
+        title: "Integrantes",
+        view: "integrantes",
     });
 });
 
