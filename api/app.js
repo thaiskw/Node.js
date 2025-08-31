@@ -3,11 +3,12 @@ const path = require("path");
 
 const app = express();
 
+// Caminhos absolutos para Vercel
+const publicPath = path.join(process.cwd(), "public");
+app.use(express.static(publicPath));
 
-app.use(express.static(path.join(__dirname, "../public")));
-
-
-app.set("views", path.join(__dirname, "../views")); 
+const viewsPath = path.join(process.cwd(), "views");
+app.set("views", viewsPath);
 app.set("view engine", "ejs");
 
 // Rotas principais
@@ -32,10 +33,11 @@ app.use("/vestibulinho", vestibulinhoRouter);
 const projetoRouter = require("../routes/projeto");
 app.use("/projeto", projetoRouter);
 
-// Inicializa o servidor só se rodar diretamente
+// Porta dinâmica para Vercel
 if (require.main === module) {
-  app.listen(3000, () => {
-    console.log("Servidor em execução na porta 3000");
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor em execução na porta ${PORT}`);
   });
 }
 
