@@ -42,6 +42,11 @@ const vestibulinhoRouter = require("./routes/vestibulinho")
 
 app.use("/vestibulinho", vestibulinhoRouter)
 
+//Rotas para projeto
+const projetoRouter = require("./routes/projeto")
+
+app.use("/projeto", projetoRouter)
+
 // Iniciar o servidor e sincronizar com o banco de dados 
 
 app.listen(3000, () => { 
