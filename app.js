@@ -37,6 +37,11 @@ const pwRouter = require("./routes/pw")
 
 app.use("/pw", pwRouter)
 
+//Rotas para vestibulinho
+const vestibulinhoRouter = require("./routes/vestibulinho")
+
+app.use("/vestibulinho", vestibulinhoRouter)
+
 // Iniciar o servidor e sincronizar com o banco de dados 
 
 app.listen(3000, () => { 
