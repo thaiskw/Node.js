@@ -3,42 +3,39 @@ const path = require("path");
 
 const app = express();
 
-// Caminhos absolutos para Vercel
-const publicPath = path.join(process.cwd(), "public");
-app.use(express.static(publicPath));
+// --- Arquivos estáticos ---
+app.use(express.static(path.join(__dirname, "../public"))); // garante que public seja encontrado
 
-const viewsPath = path.join(process.cwd(), "views");
-app.set("views", viewsPath);
+// --- Views (EJS) ---
+app.set("views", path.join(__dirname, "../views")); // garante que views seja encontrado
 app.set("view engine", "ejs");
 
-// Rotas principais
-const indexRouter = require("../routes/index");
+// --- Rotas ---
+const indexRouter = require(path.join(__dirname, "../routes/index"));
 app.use("/", indexRouter);
 
-const usuarioRouter = require("../routes/usuario");
+const usuarioRouter = require(path.join(__dirname, "../routes/usuario"));
 app.use("/usuario", usuarioRouter);
 
-const integrantesRouter = require("../routes/integrantes");
+const integrantesRouter = require(path.join(__dirname, "../routes/integrantes"));
 app.use("/integrantes", integrantesRouter);
 
-const sistemasEnbarcadosRouter = require("../routes/sistemasEnbarcados");
+const sistemasEnbarcadosRouter = require(path.join(__dirname, "../routes/sistemasEnbarcados"));
 app.use("/sistemasEnbarcados", sistemasEnbarcadosRouter);
 
-const pwRouter = require("../routes/pw");
+const pwRouter = require(path.join(__dirname, "../routes/pw"));
 app.use("/pw", pwRouter);
 
-const vestibulinhoRouter = require("../routes/vestibulinho");
+const vestibulinhoRouter = require(path.join(__dirname, "../routes/vestibulinho"));
 app.use("/vestibulinho", vestibulinhoRouter);
 
-const projetoRouter = require("../routes/projeto");
+const projetoRouter = require(path.join(__dirname, "../routes/projeto"));
 app.use("/projeto", projetoRouter);
 
-// Porta dinâmica para Vercel
+// --- Porta dinâmica para Render ---
+const PORT = process.env.PORT || 3000;
 if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Servidor em execução na porta ${PORT}`);
-  });
+  app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 }
 
 module.exports = app;
