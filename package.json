@@ -1,18 +1,13 @@
 {
   "name": "crud-2tables",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node api/app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "crud-2tables": "file:",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "ejs-layouts": "^0.0.1",
@@ -27,4 +22,3 @@
     "nodemon": "^3.1.4"
   }
 }
-

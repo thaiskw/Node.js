@@ -3,11 +3,11 @@ const path = require("path");
 
 const app = express();
 
-// Pastas públicas (CSS, JS, imagens, etc)
+
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Configuração do EJS como view engine
-app.set("views", path.join(__dirname, "../views")); // Ajuste aqui
+
+app.set("views", path.join(__dirname, "../views")); 
 app.set("view engine", "ejs");
 
 // Rotas principais
