@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
+// Importa apenas o que é necessário para Node.js
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Config do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCappDU27vgFjRxIlu2fMejQOmQroITUyY",
   authDomain: "crud-node-147f5.firebaseapp.com",
@@ -13,10 +10,13 @@ const firebaseConfig = {
   projectId: "crud-node-147f5",
   storageBucket: "crud-node-147f5.firebasestorage.app",
   messagingSenderId: "18563621591",
-  appId: "1:18563621591:web:88d33fc1ea86f2b44a0692",
-  measurementId: "G-44WEZR865Q"
+  appId: "1:18563621591:web:88d33fc1ea86f2b44a0692"
+  // measurementId não precisa no Node.js
 };
 
-// Initialize Firebase
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app)
+const db = getFirestore(app);
+
+// Exporta db
+export { db };
