@@ -1,0 +1,13 @@
+.vercel
+# dependências
+**/node_modules
+
+# logs
+*.log
+
+# cache do sistema
+.DS_Store
+Thumbs.db
+
+# config do editor
+.vscode/
