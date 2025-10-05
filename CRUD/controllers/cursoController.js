@@ -1,7 +1,7 @@
 const cursos = [];
 
 exports.listar = (req, res) => {
-  res.render('cursos/index', { cursos });
+  res.render('cursos/list', { cursos });
 };
 
 exports.formCreate = (req, res) => {

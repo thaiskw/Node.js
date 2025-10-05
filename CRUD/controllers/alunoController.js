@@ -1,7 +1,7 @@
 const alunos = []; // apenas simulação em memória
 
 exports.listar = (req, res) => {
-  res.render('alunos/index', { alunos });
+  res.render('alunos/list', { alunos });
 };
 
 exports.formCreate = (req, res) => {
