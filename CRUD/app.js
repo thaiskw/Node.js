@@ -40,10 +40,6 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });
 });
 
-app.get("/", (req, res) => {
-  res.render("home", { title: "Página Inicial" });
-});
-
 // 404
 app.use((req, res) => {
   res.status(404).render("notfound", { title: "Página não encontrada" });
