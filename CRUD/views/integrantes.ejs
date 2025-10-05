@@ -1,0 +1,10 @@
+<h1 class="text-center my-4">Integrantes</h1>
+
+<div class="row justify-content-center">
+  <% integrantes.forEach(integrante => { %>
+    <div class="col-md-3 text-center mb-4">
+      <img src="<%= integrante.foto %>" class="img-fluid rounded-circle" alt="<%= integrante.nome %>">
+      <h5 class="mt-2"><%= integrante.nome %></h5>
+    </div>
+  <% }) %>
+</div>
