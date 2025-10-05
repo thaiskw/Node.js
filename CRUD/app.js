@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import categoriaRoutes from "./routes/categoriaRoutes.js";
 import alunoRoutes from "./routes/alunoRoutes.js";
 import cursoRoutes from "./routes/cursoRoutes.js";
+import integrantesRoutes from "./routes/integrantesRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
 dotenv.config();
@@ -35,15 +36,11 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 app.use("/categorias", categoriaRoutes);
 app.use("/alunos", alunoRoutes);
 app.use("/cursos", cursoRoutes);
+app.use("/integrantes", integrantesRoutes);
 
 app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });
 });
-
-app.get("/integrantes", (req, res) => {
-  res.render("integrantes", { title: "Integrantes" });
-});
-
 
 // 404
 app.use((req, res) => {
