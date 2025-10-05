@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 
 // Rotas
 import categoriaRoutes from "./routes/categoriaRoutes.js";
-import categoriaRoutes from "./routes/categoriaRoutes.js";
 import alunoRoutes from "./routes/alunoRoutes.js";
 import cursoRoutes from "./routes/cursoRoutes.js";
 
