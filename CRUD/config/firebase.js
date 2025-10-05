@@ -9,7 +9,8 @@ const firebaseConfig = {
   projectId: "crud-node-147f5",
   storageBucket: "crud-node-147f5.firebasestorage.app",
   messagingSenderId: "18563621591",
-  appId: "1:18563621591:web:88d33fc1ea86f2b44a0692"
+  appId: "1:18563621591:web:88d33fc1ea86f2b44a0692",
+  measurementId: "G-44WEZR865Q"
 };
 
 const app = initializeApp(firebaseConfig);
