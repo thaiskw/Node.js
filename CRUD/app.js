@@ -11,6 +11,7 @@ import categoriaRoutes from "./routes/categoriaRoutes.js";
 import alunoRoutes from "./routes/alunoRoutes.js";
 import cursoRoutes from "./routes/cursoRoutes.js";
 import integrantesRoutes from "./routes/integrantesRoutes.js";
+import professorRoutes from "./routes/professorRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
 dotenv.config();
@@ -37,6 +38,7 @@ app.use("/categorias", categoriaRoutes);
 app.use("/alunos", alunoRoutes);
 app.use("/cursos", cursoRoutes);
 app.use("/integrantes", integrantesRoutes);
+app.use("/professores", professorRoutes);
 
 app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });

@@ -1,0 +1,16 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="h4 mb-3">Novo Professor</h1>
+    <form action="/professores/create" method="POST">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" class="form-control" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="disciplina">Disciplina</label>
+        <input type="text" name="disciplina" id="disciplina" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    </form>
+  </div>
+</div>
