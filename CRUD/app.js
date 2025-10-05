@@ -8,6 +8,9 @@ import { fileURLToPath } from "url";
 
 // Rotas
 import categoriaRoutes from "./routes/categoriaRoutes.js";
+import categoriaRoutes from "./routes/categoriaRoutes.js";
+import alunoRoutes from "./routes/alunoRoutes.js";
+import cursoRoutes from "./routes/cursoRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
 dotenv.config();
@@ -31,6 +34,12 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 
 // -------------------- ROTAS --------------------
 app.use("/categorias", categoriaRoutes);
+app.use("/alunos", alunoRoutes);
+app.use("/cursos", cursoRoutes);
+
+app.get("/", (req, res) => {
+  res.render("home", { title: "Página Inicial" });
+});
 
 app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });
@@ -40,6 +49,7 @@ app.get("/", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("notfound", { title: "Página não encontrada" });
 });
+
 
 // -------------------- SERVIDOR --------------------
 const PORT = process.env.PORT || 3000;
