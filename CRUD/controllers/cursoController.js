@@ -1,15 +1,31 @@
-const cursos = [];
+import { db } from "../config/firebase.js";
+import { ref, push, set, onValue } from "firebase/database";
 
-exports.listar = (req, res) => {
-  res.render('cursos/list', { cursos });
+// Listar cursos
+export const listar = (req, res) => {
+  const cursosRef = ref(db, "cursos");
+  onValue(cursosRef, (snapshot) => {
+    const data = snapshot.val();
+    const cursos = data ? Object.values(data) : [];
+    res.render("cursos/list", { cursos });
+  }, { onlyOnce: true });
 };
 
-exports.formCreate = (req, res) => {
-  res.render('cursos/create');
+// Formulário
+export const formCreate = (req, res) => {
+  res.render("cursos/create");
 };
 
-exports.create = (req, res) => {
-  const { nome, cargaHoraria } = req.body;
-  cursos.push({ nome, cargaHoraria });
-  res.redirect('/cursos');
-};
+// Adicionar novo curso
+export const create = async (req, res) => {
+  try {
+    const { nome, cargaHoraria } = req.body;
+    const cursosRef = ref(db, "cursos");
+    const novoCursoRef = push(cursosRef);
+    await set(novoCursoRef, { nome, cargaHoraria });
+    res.redirect("/cursos");
+  } catch (err) {
+    console.error("Erro ao adicionar curso:", err);
+    res.status(500).send("Erro ao salvar no Firebase");
+  }
+}

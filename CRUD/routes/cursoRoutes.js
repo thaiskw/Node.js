@@ -1,9 +1,9 @@
-const express = require('express');
+import express from "express";
+import * as cursoController from "../controllers/cursoController.js";
 const router = express.Router();
-const cursoController = require('../controllers/cursoController');
 
-router.get('/', cursoController.listar);
-router.get('/create', cursoController.formCreate);
-router.post('/create', cursoController.create);
+router.get("/", cursoController.listar);
+router.get("/create", cursoController.formCreate);
+router.post("/create", cursoController.create);
 
-module.exports = router;
+export default router;

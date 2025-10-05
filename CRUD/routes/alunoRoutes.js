@@ -1,14 +1,9 @@
-const express = require('express');
+import express from "express";
+import * as alunoController from "../controllers/alunoController.js";
 const router = express.Router();
-const alunoController = require('../controllers/alunoController');
 
-// Listar todos os alunos
-router.get('/', alunoController.listar);
+router.get("/", alunoController.listar);
+router.get("/create", alunoController.formCreate);
+router.post("/create", alunoController.create);
 
-// Formulário para criar novo aluno
-router.get('/create', alunoController.formCreate);
-
-// Enviar novo aluno
-router.post('/create', alunoController.create);
-
-module.exports = router;
+export default router;
