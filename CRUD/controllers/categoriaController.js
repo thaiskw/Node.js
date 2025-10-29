@@ -11,9 +11,22 @@ const rootRef = ref(db, "categorias");
 export default {
   // [READ] Lista todas as categorias
   async list(req, res) {
-    res.render("categorias/list", {
-      title: "Lista de Categorias",
-    });
+    try {
+      // Lê todos os registros em "categorias"
+      const snapshot = await get(rootRef);
+
+      // Se houver dados, armazena o valor; senão, objeto vazio
+      const categorias = snapshot.exists() ? snapshot.val() : {};
+
+      // Renderiza a view passando os dados e o título
+      res.render("categorias/list", {
+        title: "Lista de Categorias",
+        categorias, // <-- passa para o EJS
+      });
+    } catch (error) {
+      console.error("Erro ao listar categorias:", error);
+      res.status(500).send("Erro ao carregar categorias");
+    }
   },
 
   // [CREATE - FORM] Mostra o formulário de criação (sem acessar o DB)
@@ -25,12 +38,15 @@ export default {
   // [CREATE - ACTION] Cria uma categoria nova
   async create(req, res) {
     try {
-      // Extrai o campo "nome" enviado via POST (body-parser já configurado)
+      // Extrai o campo "nome" e "descricao" enviados via POST
       const { nome, descricao } = req.body;
+
       // Gera uma nova chave única sob "categorias" (como um auto-id)
       const novo = push(rootRef);
-      // Grava o objeto no caminho gerado (ex.: categorias/-Nabc123: { nome })
+
+      // Grava o objeto no caminho gerado (ex.: categorias/-Nabc123: { nome, descricao })
       await set(novo, { nome, descricao });
+
       // Redireciona para a listagem após sucesso
       res.redirect("/categorias");
     } catch (e) {
@@ -44,11 +60,14 @@ export default {
     try {
       // Captura o id da rota (ex.: /categorias/:id/edit)
       const { id } = req.params;
+
       // Monta ref para o filho: categorias/{id}
       const snap = await get(child(rootRef, id));
+
       // Se não existir, retorna 404
       if (!snap.exists())
         return res.status(404).send("Categoria não encontrada");
+
       // Renderiza o form de edição com os dados atuais
       res.render("categorias/edit", {
         title: "Editar Categoria",
@@ -60,14 +79,17 @@ export default {
       res.status(500).send("Erro ao abrir edição");
     }
   },
+
   // [UPDATE - ACTION] Salva a edição de uma categoria
   async update(req, res) {
     try {
-      // Pega o id da URL e o novo nome do body
+      // Pega o id da URL e o novo nome/descrição do body
       const { id } = req.params;
-      const { nome } = req.body;
+      const { nome, descricao } = req.body;
+
       // Atualiza apenas os campos enviados no caminho categorias/{id}
-      await update(child(rootRef, id), { nome });
+      await update(child(rootRef, id), { nome, descricao });
+
       // Volta para a listagem
       res.redirect("/categorias");
     } catch (e) {
@@ -75,13 +97,16 @@ export default {
       res.status(500).send("Erro ao atualizar categoria");
     }
   },
+
   // [DELETE] Remove uma categoria pelo id
   async delete(req, res) {
     try {
       // Lê o id da rota
       const { id } = req.params;
+
       // Remove o nó categorias/{id}
       await remove(child(rootRef, id));
+
       // Redireciona para a listagem após excluir
       res.redirect("/categorias");
     } catch (e) {
