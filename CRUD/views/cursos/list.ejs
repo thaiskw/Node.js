@@ -24,7 +24,10 @@
               <td><%= c.nome %></td>
               <td><%= c.cargaHoraria %></td>
               <td class="text-end">
-                <button class="btn btn-sm btn-outline-secondary">Editar</button>
+                <a href="/cursos/edit/<%= c.id %>" class="btn btn-sm btn-outline-secondary">Editar</a>
+                <form action="/cursos/delete/<%= c.id %>" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Excluir este curso?')">Excluir</button>
+                </form>
               </td>
             </tr>
           <% }) %>

@@ -1,0 +1,19 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="h4 mb-3">Editar Aluno</h1>
+    <form action="/alunos/edit/<%= aluno.id %>" method="POST">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" class="form-control" value="<%= aluno.nome %>" required>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="matricula">Matrícula</label>
+        <input type="text" name="matricula" id="matricula" class="form-control" value="<%= aluno.matricula %>" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
+      <a href="/alunos" class="btn btn-secondary mt-3">Cancelar</a>
+    </form>
+  </div>
+</div>

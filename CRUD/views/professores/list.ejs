@@ -14,21 +14,29 @@
         </tr>
       </thead>
       <tbody>
-        <% if (professores.length === 0) { %>
+        <% if (professores.length===0) { %>
           <tr>
             <td colspan="3" class="text-center text-muted">Nenhum professor cadastrado.</td>
           </tr>
-        <% } else { %>
-          <% professores.forEach(p => { %>
-            <tr>
-              <td><%= p.nome %></td>
-              <td><%= p.disciplina %></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-outline-secondary">Editar</button>
-              </td>
-            </tr>
-          <% }) %>
-        <% } %>
+          <% } else { %>
+            <% professores.forEach(p=> { %>
+              <tr>
+                <td>
+                  <%= p.nome %>
+                </td>
+                <td>
+                  <%= p.disciplina %>
+                </td>
+                <td class="text-end">
+                  <a href="/professores/editar/<%= p.id %>" class="btn btn-sm btn-outline-secondary me-2">Editar</a>
+                  <form action="/professores/deletar/<%= p.id %>" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                      onclick="return confirm('Tem certeza que deseja excluir este professor?')">Excluir</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+                <% } %>
       </tbody>
     </table>
   </div>

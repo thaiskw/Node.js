@@ -1,10 +1,8 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <h1 class="h4 mb-3">
-      <%= professor ? 'Editar Professor' : 'Novo Professor' %>
-    </h1>
+    <h1 class="h4 mb-3">Editar Professor</h1>
 
-    <form action="<%= professor ? '/professores/editar/' + professor.id : '/professores/create' %>" method="POST">
+    <form action="/professores/editar/<%= professor.id %>" method="POST">
       <div class="form-group">
         <label for="nome">Nome</label>
         <input
@@ -12,7 +10,7 @@
           name="nome"
           id="nome"
           class="form-control"
-          value="<%= professor ? professor.nome : '' %>"
+          value="<%= professor.nome %>"
           required
         >
       </div>
@@ -24,13 +22,13 @@
           name="disciplina"
           id="disciplina"
           class="form-control"
-          value="<%= professor ? professor.disciplina : '' %>"
+          value="<%= professor.disciplina %>"
           required
         >
       </div>
 
       <button type="submit" class="btn btn-primary mt-3">
-        <%= professor ? 'Salvar Alterações' : 'Salvar' %>
+        Salvar Alterações
       </button>
     </form>
   </div>
